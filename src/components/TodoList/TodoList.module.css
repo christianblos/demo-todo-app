@@ -1,0 +1,10 @@
+.list {
+    padding: .5rem;
+    border-color: #ddd;
+    border-width: 1px 0;
+    margin: 1rem 0;
+}
+
+.empty {
+    color: #888;
+}

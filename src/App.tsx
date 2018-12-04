@@ -1,12 +1,18 @@
 import React, {Component} from 'react';
-import {TodoEntry} from './components/TodoEntry/TodoEntry';
+import {TodoList} from './components/TodoList/TodoList';
+import {Todo} from './models/Todo';
 
 class App extends Component {
     render() {
+        let todos: Todo[] = [
+            new Todo(1, 'one'),
+            new Todo(2, 'two', true),
+            new Todo(3, 'three'),
+        ];
+
         return (
             <div>
-                <TodoEntry id={1} text={'one'} done={false} onToggleDone={() => console.log(1)}/>
-                <TodoEntry id={2} text={'two'} done={true} onToggleDone={() => console.log(2)}/>
+                <TodoList todos={todos} onToggleDone={(id, done) => console.log(id, done)}/>
             </div>
         );
     }
