@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
+import {addTodo} from './commands/addTodo';
+import {clearCompleted} from './commands/clearCompleted';
+import {toggleDone} from './commands/toggleDone';
 import {AddTodoForm} from './components/AddTodoForm/AddTodoForm';
 import {Summary} from './components/Summary/Summary';
 import {TodoList} from './components/TodoList/TodoList';
 import {Todo} from './models/Todo';
+import {todoState} from './states/todoState';
 
 class App extends Component {
     render() {
-        let todos: Todo[] = [
-            new Todo(1, 'one'),
-            new Todo(2, 'two', true),
-            new Todo(3, 'three'),
-        ];
+        const todos: Todo[] = todoState.todos;
 
         return (
             <div>
-                <AddTodoForm onAdd={console.log}/>
+                <AddTodoForm onAdd={addTodo}/>
 
-                <TodoList todos={todos} onToggleDone={(id, done) => console.log(id, done)}/>
+                <TodoList todos={todos} onToggleDone={(id, done) => toggleDone(id, done)}/>
 
-                <Summary openTodos={99}/>
-                <button>Clear completed</button>
+                <Summary openTodos={todos.filter(todo => !todo.done).length}/>
+                <button onClick={clearCompleted}>Clear completed</button>
             </div>
         );
     }
