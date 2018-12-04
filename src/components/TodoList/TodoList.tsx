@@ -13,9 +13,11 @@ export function TodoList(props: Props) {
         return <div className={styles.list + ' ' + styles.empty}>(Empty)</div>;
     }
 
+    const todos = [...props.todos].sort(sortTodos);
+
     return (
         <div className={styles.list}>
-            {props.todos.map(((todo) => {
+            {todos.map(((todo) => {
                 return (
                     <TodoEntry
                         key={todo.id}
@@ -28,4 +30,11 @@ export function TodoList(props: Props) {
             }))}
         </div>
     );
+}
+
+function sortTodos(a: Todo, b: Todo) {
+    if (a.done == b.done) {
+        return 0;
+    }
+    return a.done ? 1 : -1;
 }
