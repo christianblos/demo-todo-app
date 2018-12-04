@@ -1,0 +1,8 @@
+.checkbox {
+    margin-right: .5rem;
+}
+
+.done {
+    text-decoration: line-through;
+    color: #aaa;
+}
