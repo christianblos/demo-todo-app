@@ -1,4 +1,4 @@
-import {observer} from 'mobx-react';
+import {inject, observer} from 'mobx-react';
 import React, {Component} from 'react';
 import {addTodo} from './commands/addTodo';
 import {clearCompleted} from './commands/clearCompleted';
@@ -7,12 +7,17 @@ import {AddTodoForm} from './components/AddTodoForm/AddTodoForm';
 import {Summary} from './components/Summary/Summary';
 import {TodoList} from './components/TodoList/TodoList';
 import {Todo} from './models/Todo';
-import {todoState} from './states/todoState';
+import {TodoState} from './states/todoState';
 
+interface Props {
+    todoState?: TodoState
+}
+
+@inject('todoState')
 @observer
-class App extends Component {
+class App extends Component<Props> {
     render() {
-        const todos: Todo[] = todoState.todos;
+        const todos: Todo[] = this.props.todoState!.todos;
 
         return (
             <div>
