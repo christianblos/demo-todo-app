@@ -1,3 +1,4 @@
+import {observer} from 'mobx-react';
 import React, {Component} from 'react';
 import {addTodo} from './commands/addTodo';
 import {clearCompleted} from './commands/clearCompleted';
@@ -8,6 +9,7 @@ import {TodoList} from './components/TodoList/TodoList';
 import {Todo} from './models/Todo';
 import {todoState} from './states/todoState';
 
+@observer
 class App extends Component {
     render() {
         const todos: Todo[] = todoState.todos;
